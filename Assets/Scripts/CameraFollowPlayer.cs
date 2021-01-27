@@ -6,7 +6,7 @@ public class CameraFollowPlayer : MonoBehaviour
 {
     public GameObject player;
 
-    private Vector3 offset = new Vector3(0, 5, -10);
+    private Vector3 offset = new Vector3(0, 5, -13);
     // Start is called before the first frame update
     void Start()
     {
