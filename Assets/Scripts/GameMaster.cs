@@ -6,14 +6,16 @@ using UnityEngine.SceneManagement;
 public class GameMaster : MonoBehaviour
 {
     public Text txtScore;
+    public Text txtGameOver;
     public Button btnRestart;
-    private RunnerController _runnerController;
+    public Button btnGoHome;
+    public RunnerController _runnerController;
     private int startPoint = 0;
     // Start is called before the first frame update
     void Start()
     {
         _runnerController = GameObject.Find("Character").GetComponent<RunnerController>();
-        btnRestart.gameObject.SetActive(false);
+        ToggleMenu(false);
         //btnRestart.onClick.AddListener(() => RestartGame());
     }
 
@@ -27,7 +29,7 @@ public class GameMaster : MonoBehaviour
         }
         else //If game is over
         {
-            btnRestart.gameObject.SetActive(true);
+            ToggleMenu(true);
         }
     }
 
@@ -35,5 +37,17 @@ public class GameMaster : MonoBehaviour
     {
         SceneManager.LoadScene( SceneManager.GetActiveScene().name);
         //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void GoHome()
+    {
+        SceneManager.LoadScene("HomeScene", LoadSceneMode.Single);
+    }
+
+    private void ToggleMenu(bool isActive)
+    {
+        txtGameOver.gameObject.SetActive(isActive);
+        btnRestart.gameObject.SetActive(isActive);
+        btnGoHome.gameObject.SetActive(isActive);
     }
 }

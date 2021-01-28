@@ -9,7 +9,7 @@ public class RunnerController : MonoBehaviour
 
     public float jumpForce = 600;
 
-    public float gravityModifier = 1.5f;
+    public float gravityModifier = 1.8f;
 
     public bool isOnGround = true;
 
@@ -37,7 +37,7 @@ public class RunnerController : MonoBehaviour
         _animator = GetComponent<Animator>();
         baseGravity = Physics.gravity;
         Physics.gravity *= gravityModifier;
-        Debug.Log("Gravity:" + Physics.gravity);
+        //Debug.Log("Gravity:" + Physics.gravity);
         playAudio = GetComponent<AudioSource>();
     }
 
@@ -82,7 +82,7 @@ public class RunnerController : MonoBehaviour
             playAudio.PlayOneShot(crashSound, 1.0f);
         }
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Bomb"))

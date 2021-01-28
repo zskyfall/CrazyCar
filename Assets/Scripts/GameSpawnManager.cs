@@ -9,10 +9,11 @@ public class GameSpawnManager : MonoBehaviour
     public GameObject obstacelPrefab;
     public GameObject bombPrefab;
     public GameObject roadPrefab;
+    public GameObject[] obstacelPrefabs;
     private RunnerController _characterControllerScript;
 
     private float startDelay = 2;
-    private float repeatRate = 2;
+    private float repeatRate = 3.0f;
     
     private Vector3 spawnPos = new Vector3(25, 0, 0);    
     // Start is called before the first frame update
@@ -41,8 +42,16 @@ public class GameSpawnManager : MonoBehaviour
     {
         if (_characterControllerScript.gameOver == false)
         {
-            Vector3 randomSpawnPos = new Vector3(Random.Range(10,25), Random.Range(10, 20), 0);
+            Vector3 randomSpawnPos = new Vector3(Random.Range(0,25), Random.Range(10, 20), 0);
             Instantiate(bombPrefab, randomSpawnPos, bombPrefab.transform.rotation);
+        }
+    }
+
+    private void SpawnObstacel(GameObject obj, Vector3 pos)
+    {
+        if (_characterControllerScript.gameOver == false)
+        {
+            Instantiate(obj, pos, obj.transform.rotation);
         }
     }
 
