@@ -50,4 +50,5 @@ public class GameMaster : MonoBehaviour
         btnRestart.gameObject.SetActive(isActive);
         btnGoHome.gameObject.SetActive(isActive);
     }
+    
 }

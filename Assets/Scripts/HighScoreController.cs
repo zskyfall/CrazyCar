@@ -25,14 +25,19 @@ public class HighScoreController : MonoBehaviour
         {
             txtHighScore1.SetText(scores[scores.Length - 1].ToString());
             txtHighScore2.SetText(scores[scores.Length - 2].ToString());
+            txtHighScore3.SetText("");
         }
         if (scores.Length == 1)
         {
             txtHighScore1.SetText(scores[scores.Length - 1].ToString());
+            txtHighScore2.SetText("");
+            txtHighScore3.SetText("");
         }
         if (scores.Length == 0)
         {
             txtHighScore1.SetText("");
+            txtHighScore2.SetText("");
+            txtHighScore3.SetText("");
         }
     }
 

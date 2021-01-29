@@ -50,4 +50,9 @@ public class HomeMenuController : MonoBehaviour
     {
         Application.Quit();
     }
+    
+    public void ShowGameInfo()
+    {
+        SceneManager.LoadScene("GameInfo", LoadSceneMode.Single);
+    }
 }

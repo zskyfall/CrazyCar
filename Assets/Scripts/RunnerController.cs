@@ -128,7 +128,7 @@ public class RunnerController : MonoBehaviour
 
     private void UpdateHighScore(int point)
     {
-        Debug.Log("Score update: " + point);
+        //Debug.Log("Score update: " + point);
         int[] scores = PlayerPrefsX.GetIntArray("scores");
         var tempList = scores.ToList();
         tempList.Add(point);
