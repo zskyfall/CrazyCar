@@ -9,7 +9,7 @@ public class GameMaster : MonoBehaviour
     public Text txtGameOver;
     public Button btnRestart;
     public Button btnGoHome;
-    public RunnerController _runnerController;
+    private RunnerController _runnerController;
     private int startPoint = 0;
     // Start is called before the first frame update
     void Start()

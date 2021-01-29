@@ -38,7 +38,7 @@ public class HomeMenuController : MonoBehaviour
 
     public void HighScore()
     {
-        
+        SceneManager.LoadScene("HighScore", LoadSceneMode.Single);
     }
 
     public void ToggleSound()
