@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class RunnerController : MonoBehaviour
 {
     private Rigidbody rb;
@@ -29,6 +29,8 @@ public class RunnerController : MonoBehaviour
 
     public AudioClip crashBombSound;
 
+    public Text txtGuide;
+
     private Vector3 baseGravity;
     // Start is called before the first frame update
     void Start()
@@ -51,6 +53,12 @@ public class RunnerController : MonoBehaviour
             _animator.SetTrigger("Jump_trig");
             dirtParticle.Stop();
             playAudio.PlayOneShot(jumpSound,1.0f);
+            
+            //Hide the guiding text
+            if (txtGuide.IsActive())
+            {
+                txtGuide.gameObject.SetActive(false);
+            }
         }
         //For Mobile Devices
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began && isOnGround && !gameOver)
@@ -60,6 +68,12 @@ public class RunnerController : MonoBehaviour
             _animator.SetTrigger("Jump_trig");
             dirtParticle.Stop();
             playAudio.PlayOneShot(jumpSound,1.0f);
+            
+            //Hide the guiding text
+            if (txtGuide.IsActive())
+            {
+                txtGuide.gameObject.SetActive(false);
+            }
         }
     }
     

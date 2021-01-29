@@ -17,8 +17,9 @@ public class GameSpawnManager : MonoBehaviour
     
     private Vector3 spawnPos = new Vector3(25, 0, 0);    
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
+        yield return new WaitForSeconds(2.0f);
         InvokeRepeating("SpawnObstacel", startDelay, repeatRate);
         InvokeRepeating("SpawnBomb", startDelay, repeatRate);
         InvokeRepeating("SpawnRoad", startDelay, repeatRate);
@@ -42,7 +43,7 @@ public class GameSpawnManager : MonoBehaviour
     {
         if (_characterControllerScript.gameOver == false)
         {
-            Vector3 randomSpawnPos = new Vector3(Random.Range(0,25), Random.Range(10, 20), 0);
+            Vector3 randomSpawnPos = new Vector3(Random.Range(0,25), Random.Range(15, 25), 0);
             Instantiate(bombPrefab, randomSpawnPos, bombPrefab.transform.rotation);
         }
     }

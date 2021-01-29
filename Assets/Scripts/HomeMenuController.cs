@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class HomeMenuController : MonoBehaviour
 {
+    private bool isMuted = false;
+
+    public Button btnSound;
+    public Sprite OffSoundSprite;
+    public Sprite OnSoundSprite;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +20,15 @@ public class HomeMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        AudioListener.pause = isMuted;
+        if (!isMuted)
+        {
+            btnSound.image.sprite = OnSoundSprite;
+        }
+        else
+        {
+            btnSound.image.sprite = OffSoundSprite;
+        }
     }
     
     public void NewGame()
@@ -26,6 +39,11 @@ public class HomeMenuController : MonoBehaviour
     public void HighScore()
     {
         
+    }
+
+    public void ToggleSound()
+    {
+        isMuted = !isMuted;
     }
 
     public void QuitGame()
