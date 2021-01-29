@@ -14,7 +14,7 @@ public class HighScoreController : MonoBehaviour
     {
         //int highScore = PlayerPrefs.GetInt("high_score", 0);
         int[] scores = PlayerPrefsX.GetIntArray("scores");
-
+        
         if (scores.Length >= 3)
         {
             txtHighScore1.SetText(scores[scores.Length - 1].ToString());

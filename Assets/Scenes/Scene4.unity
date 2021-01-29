@@ -1248,7 +1248,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &897128468
 MonoBehaviour:
@@ -1266,7 +1266,6 @@ MonoBehaviour:
   txtGameOver: {fileID: 787107444}
   btnRestart: {fileID: 2003880688}
   btnGoHome: {fileID: 768099231}
-  _runnerController: {fileID: 0}
 --- !u!1 &936457383 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 0703a1849c2c89b4db4568688faf0c5f,
@@ -1595,10 +1594,11 @@ MonoBehaviour:
     type: 3}
   roadPrefab: {fileID: 4016883323406433556, guid: caac00d512da8e347b8ec140b6bb7213,
     type: 3}
-  obstacelPrefabs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  obstacelPrefabs: []
+  startDelay: 3
+  repeatRate: 2
+  roadStartDelay: 2
+  roadRepeatRate: 3
 --- !u!4 &1995579598
 Transform:
   m_ObjectHideFlags: 0
@@ -1611,7 +1611,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2003880686
 GameObject:

@@ -12,23 +12,33 @@ public class GameSpawnManager : MonoBehaviour
     public GameObject[] obstacelPrefabs;
     private RunnerController _characterControllerScript;
 
-    private float startDelay = 2;
-    private float repeatRate = 3.0f;
+    public float startDelay = 5;
+    public float repeatRate = 3.0f;
+
+    public float roadStartDelay = 2;
+    public float roadRepeatRate = 3.0f;
+    private int point = 0;
+    private float baseDifficult = 1000.0f;
     
     private Vector3 spawnPos = new Vector3(25, 0, 0);    
     // Start is called before the first frame update
-    IEnumerator Start()
+    void Start()
     {
-        yield return new WaitForSeconds(2.0f);
         InvokeRepeating("SpawnObstacel", startDelay, repeatRate);
         InvokeRepeating("SpawnBomb", startDelay, repeatRate);
-        InvokeRepeating("SpawnRoad", startDelay, repeatRate);
+        InvokeRepeating("SpawnRoad", roadStartDelay, roadRepeatRate);
         _characterControllerScript = GameObject.Find("Character").GetComponent<RunnerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if ((_characterControllerScript != null) && (_characterControllerScript.gameOver == false))
+        {
+            point++;
+            //Inscrease difficulty by point
+            UpdateDifficulty(point);
+        }
     }
 
     private void SpawnObstacel()
@@ -62,6 +72,17 @@ public class GameSpawnManager : MonoBehaviour
         {
             Vector3 roadSpawnPos = roadPrefab.transform.position;
             Instantiate(roadPrefab, roadSpawnPos, roadPrefab.transform.rotation);
+        }
+    }
+
+    private void UpdateDifficulty(int point)
+    {
+        if ((point / baseDifficult > 1) && (point % baseDifficult == 0) && repeatRate >= 1)
+        {
+            float diff = point / baseDifficult / 10.0f;
+            repeatRate -= diff;
+            
+            Debug.Log("Diff: " + diff+ ".Point: " + point + ". Repeat rate: " + repeatRate);
         }
     }
 }
