@@ -14,11 +14,16 @@ public class GameSpawnManager : MonoBehaviour
 
     public float startDelay = 5;
     public float repeatRate = 3.0f;
+    
+    public float sp = 5f ;
 
     public float roadStartDelay = 2;
     public float roadRepeatRate = 3.0f;
     private int point = 0;
     private float baseDifficult = 1000.0f;
+    
+    //change obastacels repeate rate after
+    private float diff = 0.1f;
     
     private Vector3 spawnPos = new Vector3(25, 0, 0);    
     // Start is called before the first frame update
@@ -53,7 +58,7 @@ public class GameSpawnManager : MonoBehaviour
     {
         if (_characterControllerScript.gameOver == false)
         {
-            Vector3 randomSpawnPos = new Vector3(Random.Range(0,25), Random.Range(15, 25), 0);
+            Vector3 randomSpawnPos = new Vector3(Random.Range(0, 40), Random.Range(15, 25), 0);
             Instantiate(bombPrefab, randomSpawnPos, bombPrefab.transform.rotation);
         }
     }
@@ -74,14 +79,33 @@ public class GameSpawnManager : MonoBehaviour
             Instantiate(roadPrefab, roadSpawnPos, roadPrefab.transform.rotation);
         }
     }
+    
+    // IEnumerator CreateObstacle( float time )
+    // {
+    //     yield return new WaitForSeconds(time) ;
+    //     while( true )
+    //     {
+    //         SpawnObstacel();
+    //         point++;
+    //         Debug.Log ("current speed is "+ sp);
+    //         yield return new WaitForSeconds(sp) ;
+    //     }
+    // }
 
     private void UpdateDifficulty(int point)
     {
         if ((point / baseDifficult > 1) && (point % baseDifficult == 0) && repeatRate >= 1)
         {
-            float diff = point / baseDifficult / 10.0f;
+            //float diff = point / baseDifficult / 20.0f;
             repeatRate -= diff;
             
+            //Cancel last invoke
+            CancelInvoke("SpawnObstacel");
+            CancelInvoke("SpawnBomb");
+            
+            //Create new Invoke with updated repateRate
+            InvokeRepeating("SpawnObstacel", 2.0f, repeatRate);
+            InvokeRepeating("SpawnBomb", 2.0f, repeatRate);
             Debug.Log("Diff: " + diff+ ".Point: " + point + ". Repeat rate: " + repeatRate);
         }
     }
